@@ -1,0 +1,128 @@
+* A Tool in Kotlin
+
+[[./kotlin.png]]
+
+Let's look at the Kotlin language through reading a
+tool written in it.
+
+
+* What's Kotlin?
+
+As per its home page:
+
+Statically typed programming language for the JVM,
+Android and the browser
+
+100% interoperable with Java™
+
+
+* What Did I Write?
+
+A good way to learn a language is writing something
+useful in it
+
+** So I Made…
+
+A thing that handles svn externals for git-svn trees
+
+
+* So I Didn't Make…
+
+It's /a bit/ minimalistic - lots of scenarios where
+you're out of luck with the current version, e.g.:
+
+- you have no cached authentication for the source repo
+- you have no cached authentication for a referenced
+  repo
+- you have no/the wrong version of git-svn on your path
+
+Also not very tested… or done.
+
+
+* An experiment: Exceptionally Unexceptional
+
+- I tried to work without exceptions
+- Instead, a Result data type
+  - Success and Failure subclass
+  - With type parameters for carrying instances of
+    corresponding datas.
+
+
+* How to do it in Kotlin
+
+- Enabled by Kotlin's feature of 'sealed' classes
+  - only the nested subtypes as direct children
+  - children can have more subclasses
+  - but *data* classes are final!
+  - Data classes as inheritors of other classes is 1.1
+- Can be combined by exhaustive pattern matching when
+  blocks
+
+
+* How'd That Work Out For Me?
+
+- Interesting experiment, not sure it's for everything
+- Harder to ignore errors – for better or worse:
+- More to type - but where you'd save with Exceptions,
+  you're probably often doing unsafe stuff!
+
+
+* Let's Get Into It
+
+Go to IDEA
+
+
+* In Conclusion: The Good
+
+- Much more concise than Java
+- Better type inference than Java
+- Great focus on null-safety
+- Fast compiler, efficient output
+- Official JVM, Android and JS Support
+- Incredible Java Interop
+- It's a J6VM migration plan unto itself
+
+
+* In Conclusion: The Bad
+
+- Don't like their way to handle try-with-resources
+- Skeptical what happens to operator functions, infix
+  notation, operator overloading… when /those certain
+  co-workers/ get to them
+- Extension methods are good, but the implications will
+  take getting used to
+- It's a language where you can get real clever.
+  - Java actively avoided that – one of its best and
+    worst points.
+
+
+* Rough edges
+
+- Tooling in IDEA is still *much* worse than for Java
+  (no useful doc support, fewer/worse intentions,
+  flakier completion…)
+- Kotlin build scripts in Gradle are still flaky, be
+  careful around upgrades if you can't afford downtime
+  at that moment
+- Language is still very much a moving target, I used
+  pre-release 1.1 which was noticably different than
+  1.0
+
+
+* Where do I see it going?
+
+- Already huge in Android, I'm told
+  - Mario Zechner noted it during his last JUGG talk
+  - Said: Due to very garbage-friendly library
+    - Unlike J8 streams…
+- So I see it pretty much everywhere JVM:
+  - GC pauses huge for latency variability in web apps
+- Can be the default language for a Java team
+- Watch your back, Scala!
+
+
+* Resources
+
+- Manning: Kotlin in Action (MEAP) - ug367 :)
+- Kotlin Slack
+- Kotlin Spec (srsly readable!)
